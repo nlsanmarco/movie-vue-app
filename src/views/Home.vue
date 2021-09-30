@@ -1,18 +1,65 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>New Movie</h1>
+    <div>
+      Title:
+      <input type="text" v-model="newMovieParams.title" />
+    </div>
+    <div>
+      Year:
+      <input type="text" v-model="newMovieParams.year" />
+    </div>
+    <div>
+      Plot:
+      <input type="text" v-model="newMovieParams.plot" />
+    </div>
+    <div>
+      Director:
+      <input type="text" v-model="newMovieParams.director" />
+    </div>
+    <div><button v-on:click="createMovie()">Create</button></div>
+    <h1>All Movies</h1>
+    <div v-for="movie in movies" v-bind:key="movie.id">
+      <h2>Title: {{ movie.title }}</h2>
+      <p>Year: {{ movie.year }}</p>
+      <p>Plot: {{ movie.plot }}</p>
+      <p>Director: {{ movie.director }}</p>
+    </div>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+<style></style>
 
+<script>
+import axios from "axios";
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
+  data: function () {
+    return {
+      movies: [],
+      newMovieParams: {},
+    };
+  },
+  created: function () {
+    this.indexMovies();
+  },
+  methods: {
+    indexMovies: function () {
+      axios.get("http://localhost:3000/movies").then((response) => {
+        console.log(response.data);
+        this.movies = response.data;
+      });
+    },
+    createMovie: function () {
+      axios
+        .post("http://localhost:3000/movies", this.newMovieParams)
+        .then((response) => {
+          console.log(response.data);
+          this.movies.push(response.data);
+        })
+        .catch((error) => {
+          console.log(error.response.data.errors);
+        });
+    },
   },
 };
 </script>
