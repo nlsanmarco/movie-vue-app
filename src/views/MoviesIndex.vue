@@ -1,0 +1,31 @@
+<template>
+  <div class="movies-index">
+    <h1>All Movies</h1>
+    <div v-for="movie in movies" v-bind:key="movie.id">
+      <h2>Title: {{ movie.title }}</h2>
+      <p>Year: {{ movie.year }}</p>
+      <p>Plot: {{ movie.plot }}</p>
+      <p>Director: {{ movie.director }}</p>
+    </div>
+  </div>
+</template>
+
+<style></style>
+
+<script>
+import axios from "axios";
+export default {
+  data: function () {
+    return {
+      movies: [],
+    };
+  },
+  created: function () {
+    axios.get("http://localhost:3000/movies").then((response) => {
+      console.log(response.data);
+      this.movies = response.data;
+    });
+  },
+  methods: {},
+};
+</script>
