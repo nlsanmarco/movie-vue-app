@@ -1,26 +1,25 @@
 <template>
   <div class="movies-new">
-    <h1>New Movie</h1>
-    <div>
-      Title:
-      <input type="text" v-model="newMovieParams.title" />
-    </div>
-    <div>
-      Year:
-      <input type="text" v-model="newMovieParams.year" />
-    </div>
-    <div>
-      Plot:
-      <input type="text" v-model="newMovieParams.plot" />
-    </div>
-    <div>
-      Director:
-      <input type="text" v-model="newMovieParams.director" />
-    </div>
-    <div>
-      <input type="text" />
-    </div>
-    <div><button v-on:click="createMovie()">Create</button></div>
+    <form v-on:submit.prevent="createMovie()">
+      <h1>New Movie</h1>
+      <div>
+        Title:
+        <input type="text" v-model="newMovieParams.title" />
+      </div>
+      <div>
+        Year:
+        <input type="text" v-model="newMovieParams.year" />
+      </div>
+      <div>
+        Plot:
+        <input type="text" v-model="newMovieParams.plot" />
+      </div>
+      <div>
+        Director:
+        <input type="text" v-model="newMovieParams.director" />
+      </div>
+      <input type="submit" value="Create" />
+    </form>
   </div>
 </template>
 
@@ -32,16 +31,17 @@ export default {
   data: function () {
     return {
       newMovieParams: {},
+      errors: [],
     };
   },
   created: function () {},
   methods: {
     createMovie: function () {
       axios
-        .post("http://localhost:3000/movies", this.newMovieParams)
+        .post("/movies", this.newMovieParams)
         .then((response) => {
           console.log(response.data);
-          this.movies.push(response.data);
+          this.$router.push("/movies");
         })
         .catch((error) => {
           console.log(error.response.data.errors);

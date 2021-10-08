@@ -12,8 +12,12 @@
       <router-link to="/logout">Logout</router-link>
       |
       <router-link to="/movies">Movies</router-link>
-      <!-- | -->
-      <!-- <router-link to="/movies/new">New Movie</router-link> -->
+      |
+      <router-link to="/movies/new">New Movie</router-link>
+      |
+      <router-link to="/actors">Actors</router-link>
+      |
+      <router-link to="/actors/new">New Actor</router-link>
     </div>
     <router-view />
   </div>
