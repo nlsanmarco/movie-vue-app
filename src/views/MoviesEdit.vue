@@ -21,6 +21,24 @@
         Director:
         <input type="text" v-model="editMovieParams.director" />
       </div>
+      <div>
+        Is the movie in English?
+        <br />
+        Yes
+        <input type="radio" v-model="editMovieParams.english" value="true" />
+        No
+        <input type="radio" v-model="editMovieParams.english" value="false" />
+      </div>
+      <div>
+        Genre
+        <br />
+        Drama
+        <input type="checkbox" v-model="editMovieParams.genre_id" value="1" />
+        Historical
+        <input type="checkbox" v-model="editMovieParams.genre_id" value="2" />
+        Comedy
+        <input type="checkbox" v-model="editMovieParams.genre_id" value="3" />
+      </div>
       <input type="submit" value="Update" />
     </form>
     editMovieParams: {{ editMovieParams }}

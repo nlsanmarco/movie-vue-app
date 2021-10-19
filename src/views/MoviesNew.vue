@@ -20,6 +20,14 @@
         Director:
         <input type="text" v-model="newMovieParams.director" />
       </div>
+      <div>
+        Is the movie in English?
+        <br />
+        Yes
+        <input type="radio" v-model="newMovieParams.english" value="true" />
+        No
+        <input type="radio" v-model="newMovieParams.english" value="false" />
+      </div>
       <input type="submit" value="Create" />
     </form>
   </div>
