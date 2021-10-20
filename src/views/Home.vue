@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!-- <h1>New Movie</h1>
+    <h1>New Movie</h1>
     <div>
       Title:
       <input type="text" v-model="newMovieParams.title" />
@@ -24,7 +24,7 @@
       <p>Year: {{ movie.year }}</p>
       <p>Plot: {{ movie.plot }}</p>
       <p>Director: {{ movie.director }}</p>
-    </div> -->
+    </div>
   </div>
 </template>
 
